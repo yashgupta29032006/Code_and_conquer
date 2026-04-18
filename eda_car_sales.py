@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('Agg')
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -68,7 +70,7 @@ for i, col in enumerate(numerical_cols):
 
 plt.tight_layout()
 plt.savefig('univariate_analysis.png')
-plt.show()
+# plt.show()
 
 # Observations:
 # Price likely shows right skewness due to luxury car models.
@@ -84,7 +86,7 @@ for col in categorical_cols:
     sns.countplot(y=df[col], order=df[col].value_counts().index, hue=df[col], palette='viridis', legend=False)
     plt.title(f'Count of Cars by {col}')
     plt.savefig(f'count_{col.lower().replace(" ", "_")}.png')
-    plt.show()
+    # plt.show()
     print(f"\nValue counts for {col}:\n{df[col].value_counts(normalize=True) * 100}")
 
 # Dominant Manufacturers/Models
@@ -99,14 +101,14 @@ plt.figure(figsize=(10, 6))
 sns.scatterplot(data=df, x='Mileage', y='Price', alpha=0.3, color='blue')
 plt.title('Mileage vs Price')
 plt.savefig('mileage_vs_price.png')
-plt.show()
+# plt.show()
 
 # Year vs Price
 plt.figure(figsize=(10, 6))
 sns.scatterplot(data=df, x='Year of manufacture', y='Price', alpha=0.3, color='orange')
 plt.title('Year of Manufacture vs Price')
 plt.savefig('year_vs_price.png')
-plt.show()
+# plt.show()
 
 # Engine Size vs Price (Boxplot might be cleaner if engine sizes are discrete enough)
 plt.figure(figsize=(10, 6))
@@ -123,7 +125,7 @@ sns.barplot(x=avg_price_man.index, y=avg_price_man.values, palette='coolwarm')
 plt.title('Average Price by Manufacturer')
 plt.ylabel('Average Price')
 plt.savefig('avg_price_manufacturer.png')
-plt.show()
+# plt.show()
 
 # 6. Correlation Analysis
 print("\n--- 6. Correlation Analysis ---")
@@ -133,7 +135,7 @@ plt.figure(figsize=(8, 6))
 sns.heatmap(corr_matrix, annot=True, cmap='RdBu_r', center=0)
 plt.title('Correlation Heatmap')
 plt.savefig('correlation_heatmap.png')
-plt.show()
+# plt.show()
 
 print("\nStrongest correlations with Price:")
 print(corr_matrix['Price'].sort_values(ascending=False))
@@ -149,7 +151,7 @@ for i, var in enumerate(key_vars):
 
 plt.tight_layout()
 plt.savefig('outlier_detection.png')
-plt.show()
+# plt.show()
 
 # Insight on outliers:
 # Extreme Price outliers are likely high-end luxury Porsche or BMW M5 models.
