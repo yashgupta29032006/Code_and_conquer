@@ -51,6 +51,13 @@ importances = pd.Series(model.feature_importances_, index=features).sort_values(
 print("Top Features impacting Price:")
 print(importances)
 
+def get_segment(engine_size):
+    if engine_size < 1.2: return "Eco Segment"
+    if engine_size <= 1.6: return "Standard Segment"
+    if engine_size <= 2.0: return "Mid Range Segment"
+    if engine_size <= 3.0: return "Heavy Segment"
+    return "Performance Segment"
+
 # --- STEP 6: Future Prediction Simulation ---
 def simulate_future_price(sample_idx, years_ahead, avg_annual_mileage=12000):
     # Take a sample car from original dataframe
@@ -92,24 +99,36 @@ demo_data = []
 
 for idx in samples:
     car, sim = simulate_future_price(idx, 10)
-    print(f"\nCar: {car['Manufacturer']} {car['Model']}")
-    print(f"  Current: Year {car['Year of manufacture']}, Mileage {car['Mileage']:,}, Price ${car['Price']:,.2f}")
+    segment = get_segment(car['Engine size'])
+    full_label = f"{car['Manufacturer']} {car['Model']} ({segment}) [{car['Year of manufacture']}]"
+    
+    print(f"\nCar: {full_label}")
+    print(f"  Current: Mileage {car['Mileage']:,}, Price ${car['Price']:,.2f}")
     
     for s in sim:
         if s['Years'] == 0: continue
         print(f"  After {s['Years']} years: (Mileage {s['Mileage']:,}), Predicted Price ${s['Price']:,.2f}")
     
-    demo_data.append((f"{car['Manufacturer']} {car['Model']}", sim))
+    demo_data.append((full_label, sim))
 
 # --- STEP 8: Visualization ---
 print("\n--- Step 8: Visualizing Price Trends ---")
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(12, 7))
+used_labels = set()
+
 for label, sim in demo_data:
+    # Safeguard: Ensure unique labels in plot legend
+    display_label = label
+    if display_label in used_labels:
+        print(f"Warning: Duplicate label '{display_label}' detected. Appending unique ID.")
+        display_label += f" (ID:{len(used_labels)+1})"
+    used_labels.add(display_label)
+    
     years = [s['Years'] for s in sim]
     prices = [s['Price'] for s in sim]
-    plt.plot(years, prices, marker='o', label=label, linewidth=2)
+    plt.plot(years, prices, marker='o', label=display_label, linewidth=2)
 
-plt.title("Simulated Future Price Trends (0-10 Years Ahead)")
+plt.title("Corrected Depreciation Curve: Price Declines Over Time", fontsize=18, fontweight='bold')
 plt.xlabel("Years from Now")
 plt.ylabel("Predicted Market Price ($)")
 plt.legend()

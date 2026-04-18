@@ -70,7 +70,7 @@ Using **Boxplots**, we identify clear segment partitions.
 *   **Insight:** Engines >3.0L represent a distinct market tier with a higher price floor, regardless of mileage.
 
 ### Simulation Graphs
-By plotting "Years Ahead" vs. "Predicted Price," we generate a forward-looking trendline. This enables a user to see the exact trajectory of their asset's value.
+By plotting "Years Ahead" vs. "Predicted Price," we generate a forward-looking trendline. To ensure clarity, labels now include both the vehicle's segment and manufacture year (e.g., *Manufacturer Model (Segment) [Year]*), preventing duplicate legend entries.
 
 ---
 
@@ -78,8 +78,7 @@ By plotting "Years Ahead" vs. "Predicted Price," we generate a forward-looking t
 
 The simulation logic mimics real-world ownership behavior:
 
-*   **Fixed Age baseline:** In the simulation, the `Year of manufacture` remains constant because the car's identity does not change.
-*   **Usage Progression:** We assume an average usage of **12,000 miles per year**.
+*   **Unique Labeling:** To maintain clarity in multi-car comparisons, the system automatically detects and tags vehicles by their segment (Eco, Standard, Performance, etc.) and specific production year, preventing duplicate legend entries.
 *   **Input Shift:** For each 5-year step, the system generates a synthetic input vector where `Mileage = Current_Mileage + (5 * 12,000)`.
 *   **Prediction:** The trained model processes this high-mileage vector to determine how much value remains, accurately reflecting depreciation due to physical wear and tear.
 

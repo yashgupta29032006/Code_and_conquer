@@ -21,8 +21,8 @@ The project follows a modular pipeline architecture designed for scalability and
 ## 🧠 Key Insights
 *   **The 50k Mileage Cliff:** Statistical evidence shows a value drop of over 50% within the first 50,000 miles, indicating a sharp buyer sensitivity threshold.
 *   **The Utility Floor:** Beyond 150,000 miles, prices decouple from usage and stabilize at a "Terminal Utility value" of ~$1.5k–$3k.
-*   **Segment Premium:** Engine capacity >3.0L acts as a segment gatekeeper, consistently keeping prices in a "Performance" bracket regardless of age.
-*   **Brand Retention:** High-performance manufacturers (Porsche, BMW) exhibit a significantly shallower depreciation curve compared to mass-market peers (Toyota, Ford).
+*   **Segment Premium:** Engine capacity >3.0L acts as a segment gatekeeper, consistently keeping prices in a "Performance Segment" bracket regardless of age.
+*   **Brand Retention:** High-performance manufacturers (Porsche, BMW) exhibit a significantly shallower depreciation curve compared to mass-market segments.
 
 ## 📊 Visual Insights
 
@@ -51,7 +51,8 @@ The project follows a modular pipeline architecture designed for scalability and
 | **Processing** | < 2s | Rapid valuation deployment for high-volume datasets. |
 
 ## 🛠️ How It Works: Future Price Simulation
-The system simulates vehicle aging by holding the **Year of Manufacture** constant while incrementing **Mileage** based on a standard 12,000-miles/year usage pattern. 
+The simulation projects a car's value 5 and 10 years into the future by assuming an average usage of 12,000 miles per year. To prevent confusion, the system uses unique, segmented labels (e.g., *Ford Fiesta (Eco Segment) [2002]*).
+
 > [!NOTE]
 > *Initial simulation models incorrectly updated the manufacturer year; we corrected this to ensure the model evaluates the car as it effectively "ages" on the same platform.*
 

@@ -19,18 +19,18 @@ dtype: float64
 
 --- Step 7: Corrected Prediction Simulation Demo ---
 
-Car: Ford Fiesta
-  Current: Year 2002, Mileage 127,300, Price $3,074.00
+Car: Ford Fiesta (Eco Segment) [2002]
+  Current: Mileage 127,300, Price $3,074.00
   After 5 years: (Mileage 187,300), Predicted Price $2,417.07
   After 10 years: (Mileage 247,300), Predicted Price $1,201.50
 
-Car: Ford Fiesta
-  Current: Year 2017, Mileage 38,370, Price $16,257.00
+Car: Ford Fiesta (Eco Segment) [2017]
+  Current: Mileage 38,370, Price $16,257.00
   After 5 years: (Mileage 98,370), Predicted Price $14,836.12
   After 10 years: (Mileage 158,370), Predicted Price $13,852.74
 
-Car: Ford Focus
-  Current: Year 1987, Mileage 236,315, Price $763.00
+Car: Ford Focus (Standard Segment) [1987]
+  Current: Mileage 236,315, Price $763.00
   After 5 years: (Mileage 296,315), Predicted Price $352.37
   After 10 years: (Mileage 356,315), Predicted Price $185.93
 
