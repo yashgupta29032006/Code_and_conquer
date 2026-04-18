@@ -8,6 +8,20 @@ This document provides a deep-dive into the technical architecture, data methodo
 
 The **Car Valuation Engine** is a specialized analytical system designed to quantify and predict the market value of second-hand vehicles. Unlike simple linear estimators, this system models the non-linear relationship between usage, age, and brand equity to provide high-precision appraisals.
 
+## 🧠 System Architecture
+
+![System Flowchart](flowchart.jpeg)
+
+The system is designed as a modular pipeline that ensures data integrity from ingestion to executive summary:
+
+*   **Ingestion & Cleaning:** Raw CSV data is processed to handle duplicates and categorical encoding.
+*   **Analytical Layer (EDA):** Concurrent execution of basic and advanced EDA to identify "Price Cliffs" and market tiers.
+*   **Modeling Layer:** The cleaned data feeds into the Random Forest Regressor, which maps complex feature interactions to target pricing.
+*   **Output Layer:** The model generates synthetic future vectors which are consumed by the Dashboard and Future Trend components to create final visual reports.
+
+### Design Insight
+This decoupled architecture is **modular**, allowing for model swaps (e.g., Gradient Boosting) without breaking the reporting layer. It is **scalable** to millions of records and remains **interpretable** by linking statistical importance back to visual dashboard insights.
+
 ### Problem Context
 The used car market suffers from asymmetric information. Rapid depreciation in early ownership years and the "terminal value" of older vehicles are often misunderstood. This system provides a data-driven framework to identify these thresholds, helping stakeholders optimize acquisition and disposal timing.
 

@@ -8,6 +8,16 @@ Car owners often treat vehicle depreciation as a linear mystery. In reality, a c
 ## 💡 The Solution
 This project moves beyond simple price estimation. It provides a **Valuation Engine** that segments the 50,000-record market into distinct archetypes (Economy vs. Performance) and uses a Random Forest model to simulate longitudinal price decay. We don't just tell you what a car is worth today; we predict its equity trajectory over the next decade.
 
+## 🧠 System Architecture
+
+![System Flowchart](flowchart.jpeg)
+
+The project follows a modular pipeline architecture designed for scalability and interpretability:
+*   **Ingestion:** Cleaning and categorical encoding of the 50,000-record dataset.
+*   **Analysis:** Distributed basic and advanced EDA to extract market "Price Cliffs."
+*   **Modeling:** Non-linear modeling via Random Forest to handle complex brand/usage interactions.
+*   **Reporting:** Automated generation of executive dashboards and future value simulations.
+
 ## 🧠 Key Insights
 *   **The 50k Mileage Cliff:** Statistical evidence shows a value drop of over 50% within the first 50,000 miles, indicating a sharp buyer sensitivity threshold.
 *   **The Utility Floor:** Beyond 150,000 miles, prices decouple from usage and stabilize at a "Terminal Utility value" of ~$1.5k–$3k.
